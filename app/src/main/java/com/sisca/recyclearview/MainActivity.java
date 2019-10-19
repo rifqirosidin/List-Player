@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.LinearLayout;
@@ -21,7 +22,7 @@ import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity  {
 
     private RecyclerView rvPlayer;
     private PlayerAdapter adapter;
@@ -43,6 +44,16 @@ public class MainActivity extends AppCompatActivity {
 //        DividerItemDecoration divider = new DividerItemDecoration(this, layoutManager.getOrientation());
         rvPlayer.setLayoutManager(layoutManager);
 //        rvPlayer.addItemDecoration(divider);
+        adapter.setListener(new OnClickListener() {
+            @Override
+            public void klikView(int position) {
+
+                Intent intent = new Intent(MainActivity.this, DetailActivity.class);
+                intent.putExtra("ID", players.get(position).getIdPlayer());
+
+                startActivity(intent);
+            }
+        });
     }
 
     public void populateData(){

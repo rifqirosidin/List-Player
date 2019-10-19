@@ -1,6 +1,7 @@
 package com.sisca.recyclearview;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +19,7 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.ViewHolder
 
     Context context;
     ArrayList<Player> players;
-
+    private OnClickListener listener;
     public PlayerAdapter(Context context) {
         this.context = context;
         this.players = new ArrayList<>();
@@ -32,6 +33,10 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.ViewHolder
 
     public ArrayList<Player> getPlayers() {
         return players;
+    }
+
+    public void setListener(OnClickListener listener) {
+        this.listener = listener;
     }
 
     @NonNull
@@ -64,6 +69,16 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.ViewHolder
             super(itemView);
             tvName = itemView.findViewById(R.id.tv_name);
             imageView = itemView.findViewById(R.id.imgPlayer);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (listener != null){
+                        listener.klikView(getAdapterPosition());
+                    }
+                }
+            });
         }
+
+
     }
 }

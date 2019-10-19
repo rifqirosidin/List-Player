@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class PlayerResult {
 
-    @SerializedName("player")
+    @SerializedName( value = "player", alternate = {"players"})
     private ArrayList<Player> players;
 
     public PlayerResult(ArrayList<Player> players) {
